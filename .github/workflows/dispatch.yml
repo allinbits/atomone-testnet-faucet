@@ -35,6 +35,8 @@ jobs:
         run: npm install
 
       - name: Process Request
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: npm start
 
       - name: Close the Issue
