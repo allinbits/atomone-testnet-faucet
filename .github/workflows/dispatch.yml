@@ -14,12 +14,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          issues=$(gh issue list --state open --json number,title,body,url,createdAt)
-          echo "Open Issues: $issues"
+          issues=$(gh issue list --state open --json number,title,body,url,createdAt,author)
+          issues_closed=$(gh issue list --state closed --json number,title,body,url,createdAt,author)
+          
           echo "$issues" > issues.json
+          echo "$issues" > issues_closed.json
 
-      - name: Upload Issue Data
-        uses: actions/upload-artifact@v4
-        with:
-          name: open-issues
-          path: issues.json
+          echo "Open Issues: $issues"
+          echo "Closed Issues: $issues_closed"
