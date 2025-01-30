@@ -2,7 +2,7 @@
 
 Requests may only be made every 48 hours for any given address, and GitHub account.
 
-Faucet will distribute `0.0001 ATONE` per request.
+Faucet will distribute `0.001 ATONE` per request.
 
 ## How to use?
 
