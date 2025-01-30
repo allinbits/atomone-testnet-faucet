@@ -21,12 +21,9 @@ jobs:
 
           issue_json=$(jq -n \
             --arg number "$issue_number" \
-            --arg title "$issue_title" \
             --arg body "$issue_body" \
-            --arg url "$issue_url" \
-            --arg createdAt "$issue_created_at" \
             --arg author "$issue_author" \
-            '{number: $number, title: $title, body: $body, url: $url, createdAt: $createdAt, author: $author}')
+            '{number: $number, body: $body, author: $author}')
 
           echo "$issue_json" > opened_issue.json
           echo "Fetched issue details: $issue_json"
