@@ -1,0 +1,17 @@
+{
+  "name": "atomone-community-faucet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "keywords": [],
+  "author": "stuyk",
+  "dependencies": {
+    "@cosmjs/amino": "^0.33.0",
+    "@cosmjs/encoding": "^0.33.0",
+    "@cosmjs/stargate": "^0.33.0",
+    "dotenv": "^16.4.7"
+  }
+}

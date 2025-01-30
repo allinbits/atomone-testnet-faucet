@@ -11,6 +11,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+
       - name: Fetch Opened Issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,9 +31,11 @@ jobs:
           echo "$issue_json" > opened_issue.json
           echo "Fetched issue details: $issue_json"
 
+      - name: Install Deps
+        run: npm install
+
       - name: Process Request
-        run: |
-          echo "Will do something here... gimme a minute"
+        run: npm start
 
       - name: Close the Issue
         env:
@@ -39,3 +44,12 @@ jobs:
           issue_number=${{ github.event.issue.number }}
           gh issue close "$issue_number" --reason "completed"
           echo "Closed issue #$issue_number"
+
+      - name: Rename and Upload the JSON File
+        if: exists('requests.json')
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add requests.json
+          git commit -m "Update requests.json"
+          git push
