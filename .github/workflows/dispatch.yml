@@ -1,24 +1,35 @@
-name: Dispatch Tokens
+name: Dispatch Token Request
 
 on:
-  workflow_dispatch:
+  issues:
+    types: [opened]
 
 jobs:
-  fetch-issues:
+  fetch-opened-issue:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch Open Issues
+      - name: Fetch Opened Issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          issues=$(gh issue list --state open --json number,title,body,url,createdAt,author)
-          issues_closed=$(gh issue list --state closed --json number,title,body,url,createdAt,author)
-          
-          echo "$issues" > issues.json
-          echo "$issues" > issues_closed.json
+          issue_number=${{ github.event.issue.number }}
+          issue_title=${{ github.event.issue.title }}
+          issue_body=${{ github.event.issue.body }}
+          issue_url=${{ github.event.issue.html_url }}
+          issue_created_at=${{ github.event.issue.created_at }}
+          issue_author=${{ github.event.issue.user.login }}
 
-          echo "Open Issues: $issues"
-          echo "Closed Issues: $issues_closed"
+          issue_json=$(jq -n \
+            --arg number "$issue_number" \
+            --arg title "$issue_title" \
+            --arg body "$issue_body" \
+            --arg url "$issue_url" \
+            --arg createdAt "$issue_created_at" \
+            --arg author "$issue_author" \
+            '{number: $number, title: $title, body: $body, url: $url, createdAt: $createdAt, author: $author}')
+
+          echo "$issue_json" > opened_issue.json
+          echo "Fetched issue details: $issue_json"
