@@ -33,3 +33,15 @@ jobs:
 
           echo "$issue_json" > opened_issue.json
           echo "Fetched issue details: $issue_json"
+
+      - name: Process Request
+        run: |
+          echo "Will do something here... gimme a minute"
+
+      - name: Close the Issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          issue_number=${{ github.event.issue.number }}
+          gh issue close "$issue_number" --reason "completed"
+          echo "Closed issue #$issue_number"
