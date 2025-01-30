@@ -6,7 +6,9 @@ Faucet will distribute `0.0001 ATONE` per request.
 
 ## How to use?
 
-Open an issue and paste your ATONE address which needs to recieve tokens.
+Open an issue and paste your ATONE address **in the body of the issue** which needs to recieve tokens.
+
+Title of the issue can be anything.
 
 Do not add any other text.
 
