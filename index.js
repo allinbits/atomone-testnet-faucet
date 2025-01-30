@@ -10,7 +10,7 @@ const ISSUE_FILE = 'opened_issue.json';
 const REQUESTS_FILE = 'requests.json';
 const ATONE_DENOM = "uatone";
 const RPC_ENDPOINT = "https://atomone-rpc.polkachu.com/";
-const AMOUNT = "1000"; // 0.001
+const AMOUNT = "100"; // 0.01
 
 function isValidCosmosAddress(address) {
     try {
