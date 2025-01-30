@@ -5,7 +5,7 @@ on:
     types: [opened]
 
 jobs:
-  fetch-opened-issue:
+  distribute-tokens:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
