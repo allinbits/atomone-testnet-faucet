@@ -46,7 +46,7 @@ jobs:
           echo "Closed issue #$issue_number"
 
       - name: Rename and Upload the JSON File
-        if: exists('requests.json')
+        if: ${{ hashFiles('requests.json') != '' }}
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
