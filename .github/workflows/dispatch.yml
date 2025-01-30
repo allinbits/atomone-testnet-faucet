@@ -16,11 +16,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           issue_number=${{ github.event.issue.number }}
-          issue_title=${{ github.event.issue.title }}
-          issue_body=${{ github.event.issue.body }}
-          issue_url=${{ github.event.issue.html_url }}
-          issue_created_at=${{ github.event.issue.created_at }}
-          issue_author=${{ github.event.issue.user.login }}
+          issue_body="${{ github.event.issue.body }}"
+          issue_author="${{ github.event.issue.user.id }}"
 
           issue_json=$(jq -n \
             --arg number "$issue_number" \
