@@ -1,0 +1,25 @@
+name: Dispatch Tokens
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Open Issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          issues=$(gh issue list --state open --json number,title,body,url,createdAt)
+          echo "Open Issues: $issues"
+          echo "$issues" > issues.json
+
+      - name: Upload Issue Data
+        uses: actions/upload-artifact@v4
+        with:
+          name: open-issues
+          path: issues.json
