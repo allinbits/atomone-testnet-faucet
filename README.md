@@ -1,4 +1,4 @@
-# Self Serve GitHub Faucet
+# AtomOne Testnet Faucet
 
 Requests may only be made every 48 hours for any given address, and GitHub account.
 
