@@ -9,7 +9,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const ISSUE_FILE = 'opened_issue.json';
 const REQUESTS_FILE = 'requests.json';
 const ATONE_DENOM = "uatone";
-const RPC_ENDPOINT = "https://atomone-rpc.polkachu.com/";
+const RPC_ENDPOINT = "https://atomone-testnet-1-rpc.allinbits.services/";
 const AMOUNT = "1000000"; // 1.0
 
 function isValidCosmosAddress(address) {
